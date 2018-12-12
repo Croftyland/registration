@@ -4,7 +4,7 @@ import { Form, Button } from "semantic-ui-react";
 export default class UserDetails extends Component {
 
     save = (e) => {
-        e.preventdefault()
+        e.preventDefault()
         this.props.nextStep()
     }
 
