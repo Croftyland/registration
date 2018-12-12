@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Avatar from './Avatar';
 import Success from './Success';
-import UserDetails from './UserDatails';
+import UserDetails from './UserDetails';
 import Confirmation from './Confirmation';
 import PersonalDetails from './PersonalDetails';
 
@@ -20,14 +20,14 @@ class MainForm extends Component {
     };
 
     nextStep = () => {
-        const {step} = this.state
+        const {step} = this.state;
         this.setState({
             step: step + 1
         })
     };
 
     prevStep = () => {
-        const {step} = this.state
+        const {step} = this.state;
         this.setState({
             step: step - 1
         })
@@ -35,7 +35,7 @@ class MainForm extends Component {
 
     handleChange = input => event => {
         this.setState({[input]: event.target.value})
-    }
+    };
 
 
     render() {
@@ -48,26 +48,26 @@ class MainForm extends Component {
                     nextStep={ this.nextStep }
                     handleChange = { this.handleChange }
                     values = { values }
-                />
+                />;
             case 2:
                 return <PersonalDetails
                     nextStep={ this.nextStep }
                     handleChange = { this.handleChange }
                     values = { values }
-                />
+                />;
+            // case 3:
+            //     return <Avatar
+            //         nextStep={ this.nextStep }
+            //         handleChange = { this.handleChange }
+            //         values = { values }
+            //     />;
             case 3:
-                return <Avatar
-                    nextStep={ this.nextStep }
-                    handleChange = { this.handleChange }
-                    values = { values }
-                />
-            case 4:
                 return <Confirmation
                     nextStep={ this.nextStep }
                     handleChange = { this.handleChange }
                     values = { values }
-                />
-            case 5:
+                />;
+            case 4:
                 return <Success/>
         }
 
