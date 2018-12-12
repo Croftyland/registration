@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Avatar from './Avatar';
+//import Avatar from './Avatar';
 import Success from './Success';
 import UserDetails from './UserDetails';
 import Confirmation from './Confirmation';
@@ -52,18 +52,21 @@ class MainForm extends Component {
             case 2:
                 return <PersonalDetails
                     nextStep={ this.nextStep }
+                    prevStep={ this.prevStep }
                     handleChange = { this.handleChange }
                     values = { values }
                 />;
             // case 3:
             //     return <Avatar
             //         nextStep={ this.nextStep }
+            //         prevStep={ this.prevStep }
             //         handleChange = { this.handleChange }
             //         values = { values }
             //     />;
             case 3:
                 return <Confirmation
                     nextStep={ this.nextStep }
+                    prevStep={ this.prevStep }
                     handleChange = { this.handleChange }
                     values = { values }
                 />;

@@ -41,7 +41,7 @@ export default class UserDetails extends Component {
                         defaultValue={values.repeatPassword}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>RepeatPassword</label>
+                    <label>Gender</label>
                     <input type="radio"
                            name="gender"
                            id="male"

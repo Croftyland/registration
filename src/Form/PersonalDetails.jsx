@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
-import { throws } from 'assert';
 
 class PersonalDetails extends Component{
     save = (e) => {
@@ -25,9 +24,9 @@ class PersonalDetails extends Component{
                     />
                 </Form.Field>
                 <Form.Field>
-                    <label>Email</label>
-                    <input placeholder='Email'
-                           onChange={this.props.handleChange('email')}
+                    <label>Mobile</label>
+                    <input placeholder='Contact'
+                           onChange={this.props.handleChange('contact')}
                            defaultValue={values.email}
                     />
                 </Form.Field>
