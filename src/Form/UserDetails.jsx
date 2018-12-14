@@ -1,61 +1,84 @@
-import React, {Component} from 'react';
-import { Form, Button } from "semantic-ui-react";
+import React from "react";
+import Field from "./Field";
 
-export default class UserDetails extends Component {
 
-    save = (e) => {
-        e.preventDefault()
-        this.props.nextStep()
-    }
-
+export default class BasicInfo extends React.Component {
     render() {
-        const { values } = this.props;
+        const { values, onChange, errors } = this.props;
         return (
-            <Form>
-                <Form.Field>
-                    <label>First Name</label>
-                    <input
-                    placeholder='First Name'
-                    onChange={this.props.handleChange('firstName')}
-                    defaultValue={values.firstName}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Last Name</label>
-                    <input
-                        placeholder='Last Name'
-                        onChange={this.props.handleChange('lastName')}
-                        defaultValue={values.lastName}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Password</label>
-                    <input
-                        placeholder='Password'
-                        onChange={this.props.handleChange('password')}
-                        defaultValue={values.password}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>RepeatPassword</label>
-                    <input
-                        placeholder='RepeatPassword'
-                        onChange={this.props.handleChange('repeatPassword')}
-                        defaultValue={values.repeatPassword}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Gender</label>
-                    <input type="radio"
-                           name="gender"
-                           id="male"
-                           value="male"/>
-                        <label className="form-check-label" htmlFor="male">Male</label>
-                    <input className="form-check-input"
-                           type="radio"
-                           name="gender"
-                           id="female"
-                           value="female"/>
-                    <label className="form-check-label" htmlFor="female">Female</label>
-                </Form.Field>
-                <Button onClick={this.save}>Next</Button>
-            </Form>
+            <div className="form-group">
+                <Field
+                    id="firstName"
+                    labelText="firstName"
+                    type="text"
+                    placeholderText="Enter firstName"
+                    name="firstName"
+                    value={values.firstName}
+                    onChange={onChange}
+                    error={errors.firstName}
+                />
+                <Field
+                    id="lastName"
+                    labelText="lastName"
+                    type="text"
+                    placeholderText="Enter lastName"
+                    name="lastName"
+                    value={values.lastName}
+                    onChange={onChange}
+                    error={errors.lastName}
+                />
+                <Field
+                    id="password"
+                    labelText="Password"
+                    type="password"
+                    placeholderText="Enter password"
+                    name="password"
+                    value={values.password}
+                    onChange={onChange}
+                    error={errors.password}
+                />
+                <Field
+                    id="repeatPassword"
+                    labelText="Repeat password"
+                    type="password"
+                    placeholderText="Enter repeatPassword"
+                    name="repeatPassword"
+                    value={values.repeatPassword}
+                    onChange={onChange}
+                    error={errors.repeatPassword}
+                />
+                <fieldset className="form-group">
+                    <div>Gender</div>
+                    <div className="form-check">
+                        <input
+                            className="form-check-input"
+                            type="radio"
+                            name="gender"
+                            id="male"
+                            value="male"
+                            checked={values.gender === "male"}
+                            onChange={onChange}
+                        />
+                        <label className="form-check-label" htmlFor="male">
+                            Male
+                        </label>
+                    </div>
+                    <div className="form-check">
+                        <input
+                            className="form-check-input"
+                            type="radio"
+                            name="gender"
+                            id="female"
+                            value="female"
+                            checked={values.gender === "female"}
+                            onChange={onChange}
+                        />
+                        <label className="form-check-label" htmlFor="female">
+                            Female
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
         );
     }
 }
