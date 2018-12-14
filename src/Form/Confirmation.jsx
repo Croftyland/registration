@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import { Button, List } from 'semantic-ui-react';
+import cities from '../Data/cities'
+import countries from '../Data/countries'
+
+import { List } from 'semantic-ui-react';
 
 class Confirmation extends Component{
-    save = (e) => {
-        e.preventDefault();
-        this.props.nextStep();
-    };
-
-    back  = (e) => {
-        e.preventDefault();
-        this.props.prevStep();
-    };
 
     render(){
         const {values: { firstName, lastName, gender, email, mobile, country, city  }} = this.props;
-
+        const cityText = cities[city].name;
+        const countryText = (countries.find(item => {
+            return item.id === Number(country);
+        })).name;
         return(
             <div>
                 <h1 className="ui centered">Confirm your Details</h1>
@@ -44,12 +41,9 @@ class Confirmation extends Component{
                     </List.Item>
                     <List.Item>
                         <List.Icon name='marker' />
-                        <List.Content>{city}, {country}</List.Content>
+                        <List.Content>{cityText}, {countryText}</List.Content>
                     </List.Item>
                 </List>
-
-                <Button onClick={this.back}>Back</Button>
-                <Button onClick={this.save}>Confirm</Button>
             </div>
         )
     }
