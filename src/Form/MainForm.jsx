@@ -78,20 +78,25 @@ constructor() {
         }
         return errors;
     };
-    onChangeStep = event => () => {
-        const { activeStep } = this.state;
-        const errors = this.validateFields();
-
-        if (Object.keys(errors).length > 0) {
-            this.setState({ errors });
-        } else {
-            this.setState({
-                errors: {}
-            });
-            if (event === "Previous" && activeStep > 1) {
-                this.setState({ activeStep: activeStep - 1 });
-            } else if (event === "Next" && activeStep < 4) {
-                this.setState({ activeStep: activeStep + 1 });
+    onChangeStep = name => event => {
+        event.preventDefault();
+        const {activeStep} = this.state;
+        if (name === "Previous" && activeStep > 1) {
+            this.setState(
+                {activeStep: activeStep - 1}
+            );
+        }
+        if (name === "Next" && activeStep < 4) {
+            const errors = this.validateFields();
+            if (Object.keys(errors).length > 0) {
+                this.setState(
+                    {errors}
+                );
+            } else {
+                this.setState({
+                    activeStep: activeStep + 1,
+                    errors: {}
+                });
             }
         }
     };
@@ -105,8 +110,6 @@ constructor() {
         };
 
         reader.readAsDataURL(avatar);
-
-        console.log("ava", event.target);
     };
 
 
@@ -149,8 +152,8 @@ constructor() {
                     ) : null}
 
                     <div className="d-flex justify-content-center">
-                        <Button name="Previous" onChangeStep={this.onChangeStep} />
-                        <Button name="Next" onChangeStep={this.onChangeStep} />
+                        <Button  name="Previous" onChangeStep={this.onChangeStep} />
+                        <Button  name="Next" onChangeStep={this.onChangeStep} />
                     </div>
                 </form>
             </div>
