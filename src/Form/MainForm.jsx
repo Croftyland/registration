@@ -153,10 +153,10 @@ class MainForm extends Component {
                         <Success/>
                     ) : null}
 
-                    <div className="d-flex justify-content-center">
-                        <Button name="Previous" onChangeStep={this.onChangeStep}/>
-                        <Button name="Next" onChangeStep={this.onChangeStep}/>
-                    </div>
+                    <Button
+                        onChangeStep={this.onChangeStep}
+                        activeStep = {this.activeStep}
+                    />
                 </form>
             </div>
         );
