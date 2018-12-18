@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Avatar from './Avatar';
 import Success from './Success';
-import Steps from '../Buttons/Steps';
+import Steps from '../Navigation/Steps';
 import Button from '../Buttons/Button'
 import UserDetails from './UserDetails';
 import Confirmation from './Confirmation';
@@ -11,7 +11,6 @@ class MainForm extends Component {
     constructor() {
         super();
         this.state = {
-            step: 3,
             values: {
                 firstName: '',
                 lastName: '',
@@ -52,11 +51,11 @@ class MainForm extends Component {
     validateFields = () => {
         const errors = {};
         if (this.state.activeStep === 1) {
-            if (this.state.values.firstname.length < 5) {
-                errors.firstname = "Must be more then 4 characters";
+            if (this.state.values.firstName.length < 5) {
+                errors.firstName = "Must be more then 4 characters";
             }
-            if (this.state.values.lastname.length < 5) {
-                errors.lastname = "Must be more then 4 characters";
+            if (this.state.values.lastName.length < 5) {
+                errors.lastName = "Must be more then 4 characters";
             }
             if (this.state.values.password.length < 6) {
                 errors.password = "Must be more then 5 characters";
@@ -88,7 +87,7 @@ class MainForm extends Component {
                 {activeStep: activeStep - 1}
             );
         }
-        if (name === "Next" && activeStep < 4) {
+        if (name === "Next" && activeStep < 5) {
             const errors = this.validateFields();
             if (Object.keys(errors).length > 0) {
                 this.setState(

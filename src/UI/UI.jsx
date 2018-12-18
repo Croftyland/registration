@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Field extends React.Component {
+export default class UI extends React.Component {
     render() {
         const {
             id,

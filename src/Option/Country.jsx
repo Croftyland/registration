@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class SelectedField extends React.Component {
+export default class Country extends React.Component {
     render() {
         const { array, onChange } = this.props;
         return (

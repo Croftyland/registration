@@ -6,7 +6,7 @@ export default class Buttons extends React.Component {
 
         return (
             <React.Fragment>
-                {activeStep !== 4 && (
+                {activeStep !== 5 && (
                     <div className="d-flex justify-content-center">
                         <button
                             type="button"
@@ -19,7 +19,8 @@ export default class Buttons extends React.Component {
                         <button
                             type="button"
                             className="mr-2 ml-2 btn btn-light"
-                            onClick={activeStep !== 4 ? onChangeStep("Next") : undefined}
+                            onClick={activeStep !== 5 ? onChangeStep("Next") : undefined}
+
                         >
                             Next
                         </button>

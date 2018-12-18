@@ -1,8 +1,8 @@
 import React from "react";
-import Field from "./Field";
-import SelectedField from "./SelectedField";
+import Field from "../UI/UI";
+import Country from "../Option/Country";
 import countries from "../Data/countries";
-import ActiveCities from "./ActiveCities";
+import Cities from "../Option/Cities";
 import cities from "../Data/cities"
 
 export default class PersonalDetails extends React.Component {
@@ -58,8 +58,8 @@ export default class PersonalDetails extends React.Component {
                     onChange={onChange}
                     error={errors.mobile}
                 />
-                <SelectedField array={countries} onChange={onChange} />
-                <ActiveCities
+                <Country array={countries} onChange={onChange} />
+                <Cities
                     array={this.state.renderСities}
                     onChange={onChange}
                     values={values}

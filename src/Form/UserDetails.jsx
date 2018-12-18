@@ -1,5 +1,5 @@
 import React from "react";
-import Field from "./Field";
+import UI from "../UI/UI";
 
 
 export default class BasicInfo extends React.Component {
@@ -7,7 +7,7 @@ export default class BasicInfo extends React.Component {
         const { values, onChange, errors } = this.props;
         return (
             <div className="form-group">
-                <Field
+                <UI
                     id="firstName"
                     labelText="firstName"
                     type="text"
@@ -17,7 +17,7 @@ export default class BasicInfo extends React.Component {
                     onChange={onChange}
                     error={errors.firstName}
                 />
-                <Field
+                <UI
                     id="lastName"
                     labelText="lastName"
                     type="text"
@@ -27,7 +27,7 @@ export default class BasicInfo extends React.Component {
                     onChange={onChange}
                     error={errors.lastName}
                 />
-                <Field
+                <UI
                     id="password"
                     labelText="Password"
                     type="password"
@@ -37,7 +37,7 @@ export default class BasicInfo extends React.Component {
                     onChange={onChange}
                     error={errors.password}
                 />
-                <Field
+                <UI
                     id="repeatPassword"
                     labelText="Repeat password"
                     type="password"
