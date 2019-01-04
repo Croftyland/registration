@@ -1,10 +1,19 @@
 import React from "react";
-import Field from "../UI/UI";
+import UIField from "../UI/UIField";
 import Country from "../Option/Country";
-import countries from "../Data/countries";
+import countries from "../../Data/countries";
 import Cities from "../Option/Cities";
-import cities from "../Data/cities"
+import cities from "../../Data/cities"
 
+import { observer, inject } from "mobx-react";
+
+@inject(({ userStore }) => ({
+    values: userStore.values,
+    onChange: userStore.onChange,
+    errors: userStore.errors
+}))
+
+@observer
 export default class PersonalDetails extends React.Component {
     constructor() {
         super();
@@ -37,8 +46,8 @@ export default class PersonalDetails extends React.Component {
     render() {
         const { values, onChange, errors } = this.props;
         return (
-            <div>
-                <Field
+            <React.Fragment>
+                <UIField
                     id="email"
                     labelText="email"
                     type="text"
@@ -48,7 +57,7 @@ export default class PersonalDetails extends React.Component {
                     onChange={onChange}
                     error={errors.email}
                 />
-                <Field
+                <UIField
                     id="mobile"
                     labelText="mobile"
                     type="tel"
@@ -65,7 +74,7 @@ export default class PersonalDetails extends React.Component {
                     values={values}
                     error={errors.city}
                 />
-            </div>
+            </React.Fragment>
         );
     }
 }

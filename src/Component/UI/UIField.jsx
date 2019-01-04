@@ -1,6 +1,7 @@
 import React from "react";
+import { observer } from "mobx-react";
 
-export default class UI extends React.Component {
+ class UIField extends React.Component {
     render() {
         const {
             id,
@@ -30,3 +31,4 @@ export default class UI extends React.Component {
         );
     }
 }
+export default observer(UIField);

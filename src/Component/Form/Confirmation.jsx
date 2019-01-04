@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import cities from '../Data/cities'
-import countries from '../Data/countries'
+import cities from '../../Data/cities'
+import countries from '../../Data/countries'
 
 import { List } from 'semantic-ui-react';
 
+import { observer, inject } from "mobx-react";
+
+@inject(({ userStore }) => ({
+    values: userStore.values
+}))
+
+@observer
 class Confirmation extends Component{
 
     render(){
-        const {values: { firstName, lastName, gender, email, mobile, country, city  }} = this.props;
+        const {values: { country, city  }} = this.props;
         const cityText = cities[city].name;
         const countryText = (countries.find(item => {
             return item.id === Number(country);
@@ -19,25 +26,25 @@ class Confirmation extends Component{
                 <List>
                     <List.Item>
                         <List.Icon name='users' />
-                        <List.Content>First Name: {firstName}</List.Content>
+                        <List.Content>First Name: {values.firstName}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='users' />
-                        <List.Content>Last Name: {lastName}</List.Content>
+                        <List.Content>Last Name: {values.lastName}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='users' />
-                        <List.Content>Gender: {gender}</List.Content>
+                        <List.Content>Gender: {values.gender}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name=' email' />
                         <List.Content>
-                            <a href='mailto:jack@semantic-ui.com'>{email}</a>
+                            <a href='mailto:jack@semantic-ui.com'>{values.email}</a>
                         </List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='mobile' />
-                        <List.Content>Mobile: {mobile}</List.Content>
+                        <List.Content>Mobile: {values.mobile}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='marker' />

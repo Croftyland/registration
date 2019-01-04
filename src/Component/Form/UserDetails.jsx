@@ -1,13 +1,20 @@
 import React from "react";
-import UI from "../UI/UI";
+import UIField from "../UI/UIField";
 
+import { observer, inject } from "mobx-react";
 
+@inject(({ formStore }) => ({
+    values: formStore.values,
+    errors: formStore.errors,
+    onChange: formStore.onChange
+}))
+@observer
 export default class BasicInfo extends React.Component {
     render() {
         const { values, onChange, errors } = this.props;
         return (
             <div className="form-group">
-                <UI
+                <UIField
                     id="firstName"
                     labelText="firstName"
                     type="text"
@@ -17,7 +24,7 @@ export default class BasicInfo extends React.Component {
                     onChange={onChange}
                     error={errors.firstName}
                 />
-                <UI
+                <UIField
                     id="lastName"
                     labelText="lastName"
                     type="text"
@@ -27,7 +34,7 @@ export default class BasicInfo extends React.Component {
                     onChange={onChange}
                     error={errors.lastName}
                 />
-                <UI
+                <UIField
                     id="password"
                     labelText="Password"
                     type="password"
@@ -37,7 +44,7 @@ export default class BasicInfo extends React.Component {
                     onChange={onChange}
                     error={errors.password}
                 />
-                <UI
+                <UIField
                     id="repeatPassword"
                     labelText="Repeat password"
                     type="password"
