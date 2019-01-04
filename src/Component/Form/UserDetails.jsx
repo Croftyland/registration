@@ -1,17 +1,15 @@
 import React from "react";
 import UIField from "../UI/UIField";
+import {inject, observer} from "mobx-react";
 
-import { observer, inject } from "mobx-react";
-
-@inject(({ formStore }) => ({
-    values: formStore.values,
-    errors: formStore.errors,
-    onChange: formStore.onChange
+@inject(({userStore}) => ({
+    values: userStore.values,
+    errors: userStore.errors
 }))
 @observer
-export default class BasicInfo extends React.Component {
+class UserDetails extends React.Component {
     render() {
-        const { values, onChange, errors } = this.props;
+        const { values, errors } = this.props;
         return (
             <div className="form-group">
                 <UIField
@@ -21,7 +19,6 @@ export default class BasicInfo extends React.Component {
                     placeholderText="Enter firstName"
                     name="firstName"
                     value={values.firstName}
-                    onChange={onChange}
                     error={errors.firstName}
                 />
                 <UIField
@@ -31,7 +28,6 @@ export default class BasicInfo extends React.Component {
                     placeholderText="Enter lastName"
                     name="lastName"
                     value={values.lastName}
-                    onChange={onChange}
                     error={errors.lastName}
                 />
                 <UIField
@@ -41,7 +37,6 @@ export default class BasicInfo extends React.Component {
                     placeholderText="Enter password"
                     name="password"
                     value={values.password}
-                    onChange={onChange}
                     error={errors.password}
                 />
                 <UIField
@@ -51,7 +46,6 @@ export default class BasicInfo extends React.Component {
                     placeholderText="Enter repeatPassword"
                     name="repeatPassword"
                     value={values.repeatPassword}
-                    onChange={onChange}
                     error={errors.repeatPassword}
                 />
                 <fieldset className="form-group">
@@ -64,7 +58,6 @@ export default class BasicInfo extends React.Component {
                             id="male"
                             value="male"
                             checked={values.gender === "male"}
-                            onChange={onChange}
                         />
                         <label className="form-check-label" htmlFor="male">
                             Male
@@ -78,7 +71,6 @@ export default class BasicInfo extends React.Component {
                             id="female"
                             value="female"
                             checked={values.gender === "female"}
-                            onChange={onChange}
                         />
                         <label className="form-check-label" htmlFor="female">
                             Female
@@ -89,3 +81,5 @@ export default class BasicInfo extends React.Component {
         );
     }
 }
+
+export default UserDetails;

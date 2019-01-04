@@ -8,7 +8,7 @@ import { inject, observer } from "mobx-react";
     error: userStore.errors.avatar
 }))
 @observer
-export default class AvatarInfo extends React.Component {
+ class AvatarInfo extends React.Component {
     render() {
         const { onChangeAvatar, img, error } = this.props;
         return (

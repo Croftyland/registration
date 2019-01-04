@@ -1,17 +1,23 @@
 import React from "react";
+import {inject, observer} from "mobx-react";
 
-export default class Cities extends React.Component {
+@inject(({ userStore }) => ({
+    onChange: userStore.onChange,
+}))
+
+@observer
+ class Cities extends React.Component {
     render() {
-        const { array, onChange, values, error } = this.props;
+        const { array, onChange, values, error, name } = this.props;
+        console.log("values",values);
         return (
             <div className="form-group">
                 <label htmlFor="country">City</label>
                 <select
                     className="form-control"
-                    id="city"
-                    name="city"
+                    id={name}
+                    name={name}
                     onChange={onChange}
-                    value={values.city}
                 >
                     <option value="">Select city</option>
                     {array
@@ -29,3 +35,4 @@ export default class Cities extends React.Component {
         );
     }
 }
+export default Cities;
