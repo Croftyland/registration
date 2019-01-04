@@ -5,12 +5,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import Store from "./Store/Store";
+import userStore from "./Store/Store";
 import { Provider } from "mobx-react";
-const userStore = new Store();
+
 
 ReactDOM.render(
-    <Provider formStore={userStore}>
+    <Provider userStore={userStore}>
         <App />
     </Provider>,
     document.getElementById("root")
