@@ -3,46 +3,20 @@ import UIField from "../UI/UIField";
 import Country from "../Option/Country";
 import countries from "../../Data/countries";
 import Cities from "../Option/Cities";
-import cities from "../../Data/cities"
+
 
 import { observer, inject } from "mobx-react";
 
 @inject(({ userStore }) => ({
     values: userStore.values,
     onChange: userStore.onChange,
-    errors: userStore.errors
+    errors: userStore.errors,
+    getCities: userStore.getCities
 }))
 
 @observer
-export default class PersonalDetails extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            renderСities: []
-        };
-    }
-    getCities = arr => {
-        const countryNumber = Number(arr);
-        const activeCities = [];
-        for (let city in cities) {
-            const index = cities[city];
-            if (countryNumber === index.country) {
-                activeCities.push({ id: city, name :index.name });
-            }
-        }
-        console.log(activeCities);
-        this.setState({
-            renderСities: activeCities
-        });
-    };
-    componentDidUpdate = (prevProps, prevState) => {
-        if (this.props.values.country !== prevProps.values.country) {
-            this.getCities(this.props.values.country);
-        }
-    };
-    componentDidMount() {
-        this.getCities(this.props.values.country);
-    }
+ class PersonalDetails extends React.Component {
+
     render() {
         const { values, onChange, errors } = this.props;
         return (
@@ -69,8 +43,9 @@ export default class PersonalDetails extends React.Component {
                 />
                 <Country array={countries} onChange={onChange} />
                 <Cities
-                    array={this.state.renderСities}
+                    array={this.props.getCities}
                     onChange={onChange}
+                    name = "city"
                     values={values}
                     error={errors.city}
                 />
@@ -78,3 +53,4 @@ export default class PersonalDetails extends React.Component {
         );
     }
 }
+export default PersonalDetails;
