@@ -14,7 +14,7 @@ import { observer, inject } from "mobx-react";
 class Confirmation extends Component{
 
     render(){
-        const {values: { country, city  }} = this.props;
+        const  { country, city, firstName, lastName,gender, mobile, email } = this.props.values;
         const cityText = cities[city].name;
         const countryText = (countries.find(item => {
             return item.id === Number(country);
@@ -26,25 +26,25 @@ class Confirmation extends Component{
                 <List>
                     <List.Item>
                         <List.Icon name='users' />
-                        <List.Content>First Name: {values.firstName}</List.Content>
+                        <List.Content>First Name: {firstName}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='users' />
-                        <List.Content>Last Name: {values.lastName}</List.Content>
+                        <List.Content>Last Name: {lastName}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='users' />
-                        <List.Content>Gender: {values.gender}</List.Content>
+                        <List.Content>Gender: {gender}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name=' email' />
                         <List.Content>
-                            <a href='mailto:jack@semantic-ui.com'>{values.email}</a>
+                            <a href='mailto:jack@semantic-ui.com'>{email}</a>
                         </List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='mobile' />
-                        <List.Content>Mobile: {values.mobile}</List.Content>
+                        <List.Content>Mobile: {mobile}</List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Icon name='marker' />

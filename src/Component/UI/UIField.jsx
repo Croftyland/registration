@@ -1,7 +1,11 @@
 import React from "react";
-import { observer } from "mobx-react";
+import {inject, observer} from "mobx-react";
 
- class UIField extends React.Component {
+@inject(({userStore}) => ({
+    onChange: userStore.onChange
+}))
+@observer
+class UIField extends React.Component {
     render() {
         const {
             id,
@@ -31,4 +35,5 @@ import { observer } from "mobx-react";
         );
     }
 }
+
 export default observer(UIField);

@@ -12,7 +12,7 @@ class ButtonsSteps extends React.Component {
         const { activeStep, onChangeStep, onClearInfo } = this.props;
         return (
             <React.Fragment>
-                {activeStep !== 4 && (
+                {activeStep !== 5 && (
                     <div className="d-flex justify-content-center">
                         <button
                             type="button"
@@ -31,7 +31,7 @@ class ButtonsSteps extends React.Component {
                         </button>
                     </div>
                 )}
-                {activeStep === 4 && (
+                {activeStep === 5 && (
                     <div className="d-flex justify-content-center">
                         <button
                             type="button"

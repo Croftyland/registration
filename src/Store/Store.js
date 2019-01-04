@@ -1,4 +1,5 @@
-import {observable, action } from "mobx";
+import {observable, action, computed} from "mobx";
+import cities from "../Data/cities";
 
 
 const emptyValues = {
@@ -34,17 +35,16 @@ class Store {
     @observable
     activeStep = 1;
 
-
     validateFields = () => {
         const errors = {};
         const {activeStep, values} = this;
         switch (activeStep) {
             case 1:
-                if (values.firstname.length < 5) {
-                    errors.firstname = "Must be more then 4 charecters";
+                if (values.firstName.length < 5) {
+                    errors.firstName = "Must be more then 4 charecters";
                 }
-                if (values.lastname.length < 5) {
-                    errors.lastname = "Must be more then 4 charecters";
+                if (values.lastName.length < 5) {
+                    errors.lastName = "Must be more then 4 charecters";
                 }
                 if (values.password.length < 6) {
                     errors.password = "Must be more then 5 charecters";
@@ -89,7 +89,7 @@ class Store {
         if (name === "Previous" && this.activeStep > 1) {
             this.activeStep = this.activeStep - 1;
         }
-        if (name === "Next" && this.activeStep < 4) {
+        if (name === "Next" && this.activeStep < 5) {
             const errors = this.validateFields();
             if (Object.keys(errors).length > 0) {
                 this.errors = errors;
@@ -117,6 +117,28 @@ class Store {
         this.activeStep = 1;
         this.values = emptyValues;
     };
-}
+    @computed get getCities() {
+        return Object.entries(cities).reduce((acc, currVal) => {
+            if (Number(this.values.country) === Number(currVal[1].country)) {
+                acc.push({ id: currVal[0], name: currVal[1].name });
+            }
+            return acc;
+        }, []);
+    }
 
-export default Store;
+//     @computed get getCities (){
+//         const countryNumber = Number(this.value.country);
+//         const activeCities = [];
+//         for (let city in cities) {
+//             const index = cities[city];
+//             if (countryNumber === index.country) {
+//                 activeCities.push({id: city, name: index.name});
+//             }
+//         }
+//         return activeCities;
+//     };
+//
+//
+}
+const userStore = new Store();
+export default userStore;

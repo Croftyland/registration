@@ -9,9 +9,7 @@ import PersonalDetails from './PersonalDetails';
 import { observer, inject } from "mobx-react";
 
 @inject(({ userStore }) => ({
-    activeStep: userStore.activeStep,
-    onChangeStep: userStore.onChangeStep,
-    onClearInfo: userStore.onClearInfo
+    activeStep: userStore.activeStep
 }))
 
 @observer
@@ -27,13 +25,13 @@ class MainForm extends Component {
                     {this.props.activeStep === 2 ? (
                         <PersonalDetails />
                     ) : null}
-                    {activeStep === 3 ? (
+                    {this.props.activeStep === 3 ? (
                         <Avatar/>
                     ) : null}
                     {this.props.activeStep === 4 ? (
                         <Confirmation />
                     ) : null}
-                    {activeStep === 5 ? (
+                    {this.props.activeStep === 5 ? (
                         <Success/>
                     ) : null}
 
